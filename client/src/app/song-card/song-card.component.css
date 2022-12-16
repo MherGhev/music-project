@@ -1,0 +1,12 @@
+.song-card{
+    display: flex;
+    align-items: center;
+    background-color: gray;
+    margin: 20px;
+    width: 500px;
+}
+
+.song-card div{
+    background-color: black;
+    color: white
+}

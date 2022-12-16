@@ -1,0 +1,15 @@
+nav{
+    display: flex;
+    gap: 10px;
+}
+nav a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+nav a:hover{
+    background-color: rgb(59, 59, 59);
+}
