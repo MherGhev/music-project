@@ -1,4 +1,4 @@
-.song-card{
+.song-card {
     display: flex;
     align-items: center;
     background-color: gray;
@@ -6,7 +6,7 @@
     width: 500px;
 }
 
-.song-card div{
+.song-card div {
     background-color: black;
     color: white
 }

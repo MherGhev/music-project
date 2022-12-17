@@ -3,7 +3,7 @@ import cors from "cors";
 import { getDiscoverSongs, getMyMusic } from "./songs.js";
 
 const app = express();
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 
 app.get("/my", (req, res) => {
