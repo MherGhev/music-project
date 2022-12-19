@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ConnectionService } from '../connection.service';
-import { Song } from '../app.module';
+import { first } from 'rxjs';
+import { Song } from '../song';
 
 @Component({
   selector: 'app-discover',
@@ -8,15 +9,15 @@ import { Song } from '../app.module';
   styleUrls: ['./discover.component.css']
 })
 export class DiscoverComponent {
-  
-  public discoverMusicArray: Song[] = [];
-  
-  constructor(private connection: ConnectionService) {
-    connection.getDiscoverMusic().subscribe(data => {
-      // @ts-ignore
-      data.forEach(object => {
-        this.discoverMusicArray.push(Song.toSong(object));
-      });      
+
+  public discoverSongs: Song[] = [];
+
+  constructor(private http: HttpClient) {
+    http.get<Song[]>("http://localhost:3001/discover").pipe(first()).subscribe(data => {
+      //@ts-ignore
+      data.forEach(obj => {
+        this.discoverSongs.push(obj);
+      });
     })
   }
 }

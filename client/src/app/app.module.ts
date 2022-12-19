@@ -8,26 +8,22 @@ import { HomeComponent } from './home/home.component';
 import { MyMusicComponent } from './my-music/my-music.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SharedModule } from './shared/shared.module';
+import { DiscoverModule } from './discover/discover.module';
+import { LoginComponent } from './login/login.component';
+import { LoginService } from './login.service';
+import { SongCardStyleDirective } from './song-card-style.directive';
 
-export class Song {
-  public id: number;
-  public name: string;
-  public artist: string;
-  public ytLink: string;
-  public description: string;
-  constructor(id: number, name: string, artist: string, ytLink: string, description: string) {
-    this.id = id;
-    this.name = name;
-    this.artist = artist;
-    this.ytLink = ytLink;
-    this.description = description;
-  }
-  static toSong(object: Object): Song {
-    //@ts-ignore
-    return new Song(object.id, object.name, object.artist, object.ytLink, object.description);
+
+export class User {
+  static isLoggedIn: boolean = false;
+  static loggedInAs: User;
+  public username: String;
+  public password: String;
+  constructor(username: String, password: String) {
+    this.username = username;
+    this.password = password;
   }
 }
-
 
 @NgModule({
   declarations: [
@@ -35,15 +31,18 @@ export class Song {
     HomeComponent,
     MyMusicComponent,
     PageNotFoundComponent,
+    SongCardStyleDirective,
+    LoginComponent,
   ],
+  exports: [SongCardStyleDirective],
+  providers: [LoginService],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    SharedModule
-  ],
-  exports: [],
-  providers: [],
-  bootstrap: [AppComponent]
+    SharedModule,
+    DiscoverModule,
+  ]
 })
 export class AppModule { }

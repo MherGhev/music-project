@@ -1,9 +1,26 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { DiscoverComponent } from './discover/discover.component';
+import { Injectable, NgModule } from '@angular/core';
+import { ActivatedRouteSnapshot, RouterModule, RouterStateSnapshot, Routes, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
 import { HomeComponent } from './home/home.component';
+import { LoginService } from './login.service';
+import { LoginComponent } from './login/login.component';
 import { MyMusicComponent } from './my-music/my-music.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
+//////////////////////
+interface CanActivate {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
+}
+
+
+@Injectable()
+class CanActivateMyMusic implements CanActivate {
+  constructor() { };
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    return LoginService.isLoggedIn;
+  }
+}
+
 
 const routes: Routes = [
   {
@@ -12,11 +29,16 @@ const routes: Routes = [
   },
   {
     path: "my",
-    component: MyMusicComponent
+    component: MyMusicComponent,
+    canActivate: [CanActivateMyMusic]
   },
   {
     path: "discover",
-    component: DiscoverComponent
+    loadChildren: () => import("./discover/discover.module").then(m => m.DiscoverModule)
+  },
+  {
+    path: "login",
+    component: LoginComponent,
   },
   {
     path: "",
@@ -27,11 +49,13 @@ const routes: Routes = [
     path: "**",
     component: PageNotFoundComponent
   }
-
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    CanActivateMyMusic
+  ]
 })
 export class AppRoutingModule { }

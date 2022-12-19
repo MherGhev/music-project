@@ -10,6 +10,9 @@ import { SongcardComponent } from './songcard/songcard.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    SongcardComponent
   ]
 })
 export class SharedModule { }

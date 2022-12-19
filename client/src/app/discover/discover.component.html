@@ -1,4 +1,3 @@
-<p>discover works!</p>
-<div *ngFor="let song of this.discoverMusicArray">
-    <!-- <app-song-card [song]="song"></app-song-card> -->
+<div *ngFor="let song of this.discoverSongs">
+    <app-songcard [song]="song" appSongCardStyle></app-songcard>
 </div>

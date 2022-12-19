@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Song } from 'src/app/app.module';
+import { Song } from 'src/app/song';
+import { SongCardStyleDirective } from 'src/app/song-card-style.directive';
 
 @Component({
   selector: 'app-songcard',

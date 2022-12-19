@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { Song } from './app.module';
+import { Router } from '@angular/router';
+import { LoginService } from './login.service';
+
 
 @Component({
   selector: 'app-root',
@@ -8,5 +10,14 @@ import { Song } from './app.module';
 })
 export class AppComponent {
   title = 'music-project';
+
+  constructor(public router: Router) { }
+
+  savePrevRoute() {
+    const currentUrl = this.router.url
+    const urlTree = this.router.parseUrl(this.router.url);
+    urlTree.queryParams["previousUrl"] = currentUrl;
+    LoginService.prevUrl = urlTree.queryParams["previousUrl"];
+  }
 
 }
