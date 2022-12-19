@@ -16,6 +16,7 @@ export class DiscoverComponent {
     http.get<Song[]>("http://localhost:3001/discover").pipe(first()).subscribe(data => {
       //@ts-ignore
       data.forEach(obj => {
+        obj = Song.toSong(obj)
         this.discoverSongs.push(obj);
       });
     })

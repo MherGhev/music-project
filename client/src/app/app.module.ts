@@ -11,7 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import { DiscoverModule } from './discover/discover.module';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login.service';
-import { SongCardStyleDirective } from './song-card-style.directive';
+
 
 
 export class User {
@@ -31,10 +31,9 @@ export class User {
     HomeComponent,
     MyMusicComponent,
     PageNotFoundComponent,
-    SongCardStyleDirective,
-    LoginComponent,
+    LoginComponent
   ],
-  exports: [SongCardStyleDirective],
+  exports: [],
   providers: [LoginService],
   bootstrap: [AppComponent],
   imports: [

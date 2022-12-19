@@ -9,8 +9,11 @@ export class Song {
         this.artist = artist;
     }
     equals(otherSong: Song): boolean {
-        console.log("this", this.name, this.artist);
-        console.log("other", otherSong.name, otherSong.artist);
+        console.log(this.name, otherSong.name);
+        console.log(this.artist, otherSong.artist);
         return this.name === otherSong.name && this.artist === otherSong.artist;
+    }
+    static toSong(obj: any): Song{
+        return new Song(obj.id, obj.name, obj.artist);
     }
 }

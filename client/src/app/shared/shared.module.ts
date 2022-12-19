@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SongcardComponent } from './songcard/songcard.component';
+import { SongCardStyleDirective } from './song-card-style.directive';
 
 
 
 @NgModule({
   declarations: [
-    SongcardComponent
+    SongcardComponent,
+    SongCardStyleDirective
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    SongcardComponent
+    SongcardComponent,
+    SongCardStyleDirective
   ]
 })
 export class SharedModule { }
